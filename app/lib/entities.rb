@@ -2,7 +2,7 @@ module Entities
   class Sale < Grape::Entity
     expose :id, documentation: { type: 'string', desc: 'ID of sales person.' }
     expose :name, documentation: { type: 'string', desc: 'Name of sales person.' }
-    expose :amount, documentation: { type: 'number', desc: 'Total sales for sales person.' }
+    expose :amount, documentation: { type: 'float', desc: 'Total sales for sales person.' }
   end
 
   class Sales < Grape::Entity

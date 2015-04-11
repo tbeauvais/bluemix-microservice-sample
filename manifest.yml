@@ -1,0 +1,6 @@
+---
+applications:
+- name: sales-api
+  memory: 128M
+  host: sales-api
+  buildpack: https://github.com/cloudfoundry/buildpack-ruby.git
