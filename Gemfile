@@ -7,4 +7,5 @@ gem 'grape-entity'
 gem 'grape-swagger'
 gem 'rack-cors'
 
+gem 'redis'
 gem 'puma'
