@@ -1,8 +1,8 @@
 ---
 applications:
-- name: sales-api
+- name: my-sales-microservice-sample
   memory: 128M
-  host: sales-api
+  host: my-sales-microservice-sample
   buildpack: https://github.com/cloudfoundry/buildpack-ruby.git
 services:
 - redis-db1
