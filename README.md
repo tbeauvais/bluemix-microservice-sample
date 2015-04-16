@@ -2,7 +2,7 @@ Bluemix Microservice Sample
 ==================
 
 
-Sample microservice Ruby application built using [Grape](https://github.com/intridea/grape), [Grape Swagger](https://github.com/tim-vandecasteele/grape-swagger), and [Grape Entity](https://github.com/intridea/grape-entity) deployed to [IBM Bluemix](https://ace.ng.bluemix.net) (Cloudfoundry)
+Sample microservice Ruby application built using [Grape](https://github.com/intridea/grape), [Grape Swagger](https://github.com/tim-vandecasteele/grape-swagger), and [Grape Entity](https://github.com/intridea/grape-entity) deployed to [IBM Bluemix](https://ace.ng.bluemix.net) (Cloud Foundry)
 
 ## Overview
 
@@ -29,10 +29,12 @@ class SalesApi  < Grape::API
 end
 ```
 
-##### Accessing Bluemix Services
-Once a service is bound to your application(See the Deploy to Bluemix section) you can access it using the properties in the VCAP_SERVICES environment variable. This variable is added to the environment by Cloudfoundry.
+##### Accessing Cloud Foundry (Bluemix) Services
+Once a service is bound to your application(See the Deploy to Bluemix section) you can access it using the properties in the VCAP_SERVICES environment variable. This variable is added to the environment by Cloud Foundry.
 
-The sample application shows how you can read the Redis information from the VCAP_SERVICES variable when running on Cloudfoundry, as well as using the default connection when running locally.
+The sample application shows how you can read the Redis information from the VCAP_SERVICES variable when running on Cloud Foundry, as well as using the default connection when running locally.
+See the ["Getting started with Redis service"](https://www.ng.bluemix.net/docs/#services/Redis/index.html) for more information.
+
 ```
 class RedisConnection
 
@@ -116,15 +118,18 @@ First you will need to edit the "name" and "host" in the manifest.yml file to en
       - name: my-sales-microservice-sample
         host: my-sales-microservice-sample
 
+### Login to Bluemix
+    $ cf api https://api.ng.bluemix.net
+    $ cf login
+    
 ### Create a Service Instance
 Run the cf create-service command to create a Redis service instance. The name you give the instance (redis-db1) must match the service name specified in the manifest.yml file since that's what the application will be bound to.
-    cf create-service redis 100 redis-db1
+
+    $ cf create-service redis 100 redis-db1
 
 ### Push Application to Cloud foundry (Bluemix)
 Run the following commands from the cloned repository (e.i. bluemix-microservice-sample). This will connect you to Bluemix and then push the application to the the Cloud Foundry server, as well as bind the application to the service instance. 
 
-    $ cf api https://api.ng.bluemix.net
-    $ cf login
     $ cf push
 
 
