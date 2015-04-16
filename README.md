@@ -4,6 +4,29 @@ Bluemix Microservice Sample
 
 Sample microservice Ruby application built using [Grape](https://github.com/intridea/grape), [Grape Swagger](https://github.com/tim-vandecasteele/grape-swagger), and [Grape Entity](https://github.com/intridea/grape-entity) deployed to [IBM Bluemix](https://ace.ng.bluemix.net) (Cloudfoundry)
 
+## Overview
+Using the Grape DLS to implement your service API, along with Grape-Swagger allows you to easily produce documentation that conforms to the [Swagger Specification](https://github.com/swagger-api/swagger-spec).
+
+Here is an example of the GET operation for getting a collection of Sales records.
+```
+class SalesApi  < Grape::API
+
+  version 'v1', using: :path
+  format :json
+  default_format :json
+
+  namespace :sales do
+
+    desc 'List of sales', entity: Entities::Sales
+    get '/', http_codes: [[200, 'Ok', Entities::Sales]] do
+      present SalesAccess.fetch_all, is_array: false, with: Entities::Sales, type: :full
+    end
+  
+  ...........
+
+end
+```
+
 
 ## Installation
 Clone or fork this repository then run bundle to install the dependent gems.  
