@@ -9,10 +9,8 @@ class SalesApi  < Grape::API
 
   namespace :sales do
 
-    desc 'List of sales' , is_array: true, entity: Entities::Sales
-    get '/', http_codes: [
-             [200, 'Ok', Entities::Sales, is_array: true],
-             [400, "Invalid parameter entry"]] do
+    desc 'List of sales', entity: Entities::Sales
+    get '/', http_codes: [[200, 'Ok', Entities::Sales, is_array: true]] do
       present SalesAccess.fetch_all, is_array: false, with: Entities::Sales, type: :full
     end
 

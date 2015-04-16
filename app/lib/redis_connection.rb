@@ -17,8 +17,7 @@ class RedisConnection
     credentials = {'credentials'=>{'port'=>'6379', 'hostname'=>'localhost', 'password'=>''}}
     if ENV['VCAP_SERVICES']
       services = JSON.parse(ENV['VCAP_SERVICES'])
-      redis_service = services['rediscloud-n/a']
-      redis_service = services['redis-2.6'] unless redis_service
+      redis_service = services['redis-2.6']
       credentials = redis_service.first['credentials'] if redis_service
     end
     credentials
