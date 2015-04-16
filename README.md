@@ -133,3 +133,12 @@ Run the following commands from the cloned repository (e.i. bluemix-microservice
     $ cf push
 
 
+##### Testing in Swagger UI
+
+Once the application has started you can open http://petstore.swagger.io/ in your browser, and point the Swagger UI to the application running on Bluemix.
+
+```
+http://my-sales-microservice-sample.mybluemix.net/swagger_doc
+```
+
+![Application Architecture](/doc/swagger_ui_bluemix.png)
