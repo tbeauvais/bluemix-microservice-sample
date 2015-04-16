@@ -5,7 +5,11 @@ Sample API application using Grape, Grape Swagger, and Grape Entity
 
 This sample used Redis as its datastore. The easiest way to install it is to use homebrew
 ```
-brew install redis
+$ brew install redis
+```
+Start Redis
+```
+$ redis
 ```
 
 
