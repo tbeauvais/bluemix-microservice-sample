@@ -5,6 +5,8 @@ Bluemix Microservice Sample
 Sample microservice Ruby application built using [Grape](https://github.com/intridea/grape), [Grape Swagger](https://github.com/tim-vandecasteele/grape-swagger), and [Grape Entity](https://github.com/intridea/grape-entity) deployed to [IBM Bluemix](https://ace.ng.bluemix.net) (Cloudfoundry)
 
 ## Overview
+
+##### Service API
 Using the Grape DLS to implement your service API, along with Grape-Swagger allows you to easily produce documentation that conforms to the [Swagger Specification](https://github.com/swagger-api/swagger-spec).
 
 Here is an example of the GET operation for getting a collection of Sales records.
@@ -26,6 +28,40 @@ class SalesApi  < Grape::API
 
 end
 ```
+
+##### Accessing Bluemix Services
+Once a service is bound to your application(See the Deploy to Bluemix section) you can access it using the properties in the VCAP_SERVICES environment variable. This variable is added to the environment by Cloudfoundry.
+
+The sample application shows how you can read the Redis information from the VCAP_SERVICES variable when running on Cloudfoundry, as well as using the default connection when running locally.
+```
+class RedisConnection
+
+  def self.client
+    Redis.new(host: credentials['hostname'], port: credentials['port'], password: credentials['password'])
+  end
+
+  private
+
+  def self.credentials
+    @credentials ||= fetch_credentials
+  end
+
+  def self.fetch_credentials
+    credentials = {'credentials'=>{'port'=>'6379', 'hostname'=>'localhost', 'password'=>''}}
+    if ENV['VCAP_SERVICES']
+      services = JSON.parse(ENV['VCAP_SERVICES'])
+      redis_service = services['redis-2.6']
+      credentials = redis_service.first['credentials'] if redis_service
+    end
+    credentials
+  rescue Exception => e
+    $stderr.puts 'Error in config'
+    $stderr.puts "Error: #{e.message}"
+  end
+
+end
+```
+
 
 
 ## Installation
