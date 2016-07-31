@@ -2,10 +2,15 @@ require 'grape'
 require 'grape-swagger'
 require 'grape-entity'
 require 'rack/cors'
-require_relative 'app/lib/sales'
-require_relative 'app/lib/sale'
-require_relative 'app/lib/entities'
-require_relative 'app/api/sales_api'
+
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'app', 'lib'))
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'app', 'api'))
+
+
+require 'sales'
+require 'sale'
+require 'entities'
+require 'sales_api'
 
 use Rack::Cors do
   allow do
