@@ -7,7 +7,7 @@ Sample microservice Ruby application built using [Grape](https://github.com/intr
 ## Overview
 
 ##### Service API
-Using the Grape DLS to implement your service API, along with Grape-Swagger allows you to easily produce documentation that conforms to the [Swagger Specification](https://github.com/swagger-api/swagger-spec).
+Using the Grape DLS to implement your service API, along with Grape-Swagger allows you to easily produce documentation that conforms to the [Swagger 1.2 Specification](https://github.com/swagger-api/swagger-spec). Unfortunately Grape-Swagger does not yet support the Swagger 2.0 specification.
 
 Here is an example of the GET operation for getting a collection of Sales records.
 ```
